@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using _Project.Runtime.Core.Bundle.Scripts;
 using UnityEngine;
 
 public class LauncherScript : MonoBehaviour
@@ -20,8 +21,8 @@ public class LauncherScript : MonoBehaviour
     
     public async Task OnClickPlay()
     {
-        var bundle = Bundle.Instance;
-        bundle = new Bundle();
+        var bundle = BundleModel.Instance;
+        bundle = new BundleModel();
         await bundle.LoadScene("GameScene");
     }
     
