@@ -8,36 +8,67 @@ using UnityEngine;
 public class MainMenuView : MonoBehaviour
 {
     private BundleModel bundle;
-    public Transform Parent;
+    private ScreenManager _screenManager;
+    
     private async Task Awake()
     {
         DontDestroyOnLoad(gameObject);
-        bundle = BundleModel.Instance;
-        bundle = new BundleModel();
+        BundleModel.Instance = new BundleModel();
+        bundle =  BundleModel.Instance;
         
+        _screenManager = ScreenManager.Instance;
     }
 
-    public void PlayButton()
+    #region The codes assigned to the buttons on the scene.
+    
+    public async void PlayButton()
     {
-        OnClickPlay();
+       await OnClickPlay();
     }
 
-    public void SettingsButton()
+    public async void SettingsButton()
     {
-        //SettingsScreen();
-        bundle.LoadPrefab("SettingsScreen", Parent);
+        await SettingsScreen();
     }
     
-    public async Task OnClickPlay()
+    public async void CreditsButton()
+    {
+        await CreditsScreen();
+    }
+
+    public async void ShopButton()
+    {
+        await ShopScreen();
+    }
+
+    public void ExitButton()
+    {
+        Application.Quit();
+    }
+
+    #endregion
+
+    #region The codes accessed through ScreenManager.
+
+    private async Task OnClickPlay()
     {
         await bundle.LoadScene("GameScene");
     }
 
-    public async Task SettingsScreen()
+    private async Task SettingsScreen()
     {
-        var screenManager = ScreenManager.Instance;
-        var openScreen = screenManager.OpenScreen(ScreenKeys.SettingsScreen, ScreenLayerKeys.SettingsLayer);
-        Debug.Log("Async method çalıştı");
+        var openScreen = _screenManager.OpenScreen(ScreenKeys.SettingsScreen, ScreenLayerKeys.SettingsLayer);
     }
-    
+
+    private async Task CreditsScreen()
+    {
+        var openScreen = _screenManager.OpenScreen(ScreenKeys.CreditsScreen, ScreenLayerKeys.SettingsLayer);
+    }
+
+    private async Task ShopScreen()
+    {
+        var openScreen = _screenManager.OpenScreen(ScreenKeys.ShopScreen,ScreenLayerKeys.ShopLayer);
+    }
+
+    #endregion   
 }

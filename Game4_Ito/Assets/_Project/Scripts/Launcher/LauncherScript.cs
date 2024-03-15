@@ -1,21 +1,28 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using _Project.Runtime.Core.Bundle.Scripts;
 using _Project.Runtime.Core.UI.Scripts.Manager;
 using UnityEngine;
 
-public class LauncherScript : MonoBehaviour
+namespace _Project.Scripts.Launcher
 {
-    private BundleModel bundle;
-    private async Task Awake()
+    public class LauncherScript : MonoBehaviour
     {
-        DontDestroyOnLoad(gameObject);
-        //var screenManager = ScreenManager.Instance;
-        //screenManager.OpenScreen(ScreenKeys.MainMenuScreen, ScreenLayerKeys.MainMenuLayer);
-        //Debug.Log("Çalıştı");
+        private BundleModel bundle;
+        private ScreenManager _screenManager;
+        private async Task Awake()
+        {
+            DontDestroyOnLoad(gameObject);
+            BundleModel.Instance = new BundleModel();
+            bundle =  BundleModel.Instance;
+        
+            _screenManager = ScreenManager.Instance;
+
+            await LoadMainMenuScreen();
+        }
+        
+        public async Task LoadMainMenuScreen()
+        {
+            await _screenManager.OpenScreen(ScreenKeys.MainMenuScreen, ScreenLayerKeys.MainMenuLayer);
+        }
     }
-    
-    
 }
