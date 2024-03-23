@@ -40,7 +40,7 @@ public class MainMenuView : MonoBehaviour
     {
         await ShopScreen();
     }
-
+    
     public void ExitButton()
     {
         Application.Quit();
@@ -54,7 +54,7 @@ public class MainMenuView : MonoBehaviour
     {
         await bundle.LoadScene("GameScene");
     }
-
+    
     private async Task SettingsScreen()
     {
         var openScreen = _screenManager.OpenScreen(ScreenKeys.SettingsScreen, ScreenLayerKeys.SettingsLayer);

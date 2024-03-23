@@ -22,7 +22,8 @@ namespace _Project.Scripts.Launcher
         
         public async Task LoadMainMenuScreen()
         {
-            await _screenManager.OpenScreen(ScreenKeys.MainMenuScreen, ScreenLayerKeys.MainMenuLayer);
+            await ScreenManager.Instance.OpenScreen(ScreenKeys.MainMenuScreen, ScreenLayerKeys.MainMenuLayer);
         }
+ 
     }
 }
