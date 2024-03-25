@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using _Project.Runtime.Core.Bundle.Scripts;
 using _Project.Runtime.Core.UI.Scripts.Manager;
+using _Project.Scripts.Keys;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,12 +35,12 @@ namespace _Project.Scripts.UiScripts.ViewScripts
             _audioSourceVolume = _sliderValue;
         }
 
-        public async Task BackButton()
+        public void BackButton()
         {
-            await LoadMainMenuScreen();
+             LoadMainMenuScreen();
         }
         
-        private async Task LoadMainMenuScreen()
+        private async void LoadMainMenuScreen()
         {
             var openScreen = await ScreenManager.Instance.OpenScreen(ScreenKeys.MainMenuScreen, ScreenLayerKeys.MainMenuLayer);
         }

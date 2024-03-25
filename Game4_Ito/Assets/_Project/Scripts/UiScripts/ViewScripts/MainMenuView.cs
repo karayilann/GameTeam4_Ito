@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using _Project.Runtime.Core.Bundle.Scripts;
 using _Project.Runtime.Core.UI.Scripts.Manager;
+using _Project.Scripts.Keys;
 using UnityEngine;
 
 public class MainMenuView : MonoBehaviour
@@ -57,17 +58,17 @@ public class MainMenuView : MonoBehaviour
     
     private async Task SettingsScreen()
     {
-        var openScreen = _screenManager.OpenScreen(ScreenKeys.SettingsScreen, ScreenLayerKeys.SettingsLayer);
+        var openScreen = _screenManager.OpenScreen(ScreenKeys.SettingsScreen, ScreenLayerKeys.MainMenuLayer);
     }
 
     private async Task CreditsScreen()
     {
-        var openScreen = _screenManager.OpenScreen(ScreenKeys.CreditsScreen, ScreenLayerKeys.SettingsLayer);
+        var openScreen = _screenManager.OpenScreen(ScreenKeys.CreditsScreen, ScreenLayerKeys.MainMenuLayer);
     }
 
     private async Task ShopScreen()
     {
-        var openScreen = _screenManager.OpenScreen(ScreenKeys.ShopScreen,ScreenLayerKeys.ShopLayer);
+        var openScreen = _screenManager.OpenScreen(ScreenKeys.ShopScreen,ScreenLayerKeys.MainMenuLayer);
     }
 
     #endregion   

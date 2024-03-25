@@ -121,9 +121,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5594284576132578700, guid: 3ae97eff1bea32540aaa20c13343ffed,
-          type: 3}
-        m_TargetAssemblyTypeName: _Project.Scripts.Launcher.LauncherScript, Assembly-CSharp
+      - m_Target: {fileID: 1896424872649426912}
+        m_TargetAssemblyTypeName: _Project.Scripts.UiScripts.ViewScripts.CreditsScreenView,
+          Assembly-CSharp
         m_MethodName: BackButton
         m_Mode: 1
         m_Arguments:
