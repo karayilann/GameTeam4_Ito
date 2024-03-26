@@ -17,16 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: d28f78232ac9b5848ba5c9057d089a58
   m_SerializeEntries:
-  - m_GUID: 395eba30a82401c4794cc98c4b9d6a18
-    m_Address: MainMenu
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2e70392657be90f4ea6282a7376503e6
-    m_Address: GameScene
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c1d6cfc23b65ad94cbd9ad8481328e63
     m_Address: MainMenuScreen
     m_ReadOnly: 0
