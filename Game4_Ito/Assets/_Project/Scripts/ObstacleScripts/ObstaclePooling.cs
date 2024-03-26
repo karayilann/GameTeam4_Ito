@@ -47,17 +47,16 @@ public class ObstaclePooling : SingletonBehaviour<ObstaclePooling>
 
     public void GetBackPoolTheUnifiedObstacles()
     {
-        if (notListedUnifiedObstacles.Count > 0)
+
+        for (int i = notListedUnifiedObstacles.Count - 1; i >= 0; i--)
         {
-            for (int i = 0; i < notListedUnifiedObstacles.Count; i++)
+            if (!notListedUnifiedObstacles[i].gameObject.activeSelf)
             {
-                if (!notListedUnifiedObstacles[i].gameObject.activeSelf)
-                {
-                    listedUnifiedObstacles.Add(notListedUnifiedObstacles[i]);
-                    notListedUnifiedObstacles.RemoveAt(i);
-                }
+                listedUnifiedObstacles.Add(notListedUnifiedObstacles[i]);
+                notListedUnifiedObstacles.RemoveAt(i);
             }
         }
+
     }
 
     public void GetSeparateObstacle(Vector3 position)
@@ -73,16 +72,14 @@ public class ObstaclePooling : SingletonBehaviour<ObstaclePooling>
 
     public void GetBackPoolTheSeparateObstacle()
     {
-        if (notListedSeparateObstacles.Count > 0)
+        for (int i = notListedSeparateObstacles.Count - 1; i >= 0; i--)
         {
-            for (int i = 0; i < notListedSeparateObstacles.Count; i++)
+            if (!notListedSeparateObstacles[i].activeSelf)
             {
-                if (!notListedSeparateObstacles[i].activeSelf)
-                {
-                    listedSeparateObstacles.Add(notListedSeparateObstacles[i]);
-                    notListedSeparateObstacles.RemoveAt(i);
-                }
+                listedSeparateObstacles.Add(notListedSeparateObstacles[i]);
+                notListedSeparateObstacles.RemoveAt(i);
             }
         }
+
     }
 }

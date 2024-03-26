@@ -253,6 +253,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myBool: 0
+  setSetActive: 0
+  parent: {fileID: 264265463}
   getBackBool: 0
 --- !u!65 &866444235
 BoxCollider:

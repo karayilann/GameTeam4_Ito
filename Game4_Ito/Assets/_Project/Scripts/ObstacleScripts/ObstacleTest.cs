@@ -9,6 +9,9 @@ public class ObstacleTest : MonoBehaviour
 
     [SerializeField] private bool myBool;
 
+    [SerializeField] private bool setSetActive;
+    [SerializeField] private GameObject parent;
+
     [SerializeField] private bool getBackBool;
 
     private void Start()
@@ -25,6 +28,17 @@ public class ObstacleTest : MonoBehaviour
             Vector3 obstaclePosition = new Vector3(0, 2, randomZ);
             ObstaclePooling.Instance.GetSeparateObstacle(obstaclePosition);
             myBool = false;
+        }
+
+        if (setSetActive)
+        {
+            for (int i = 0; i < parent.transform.childCount; i++)
+            {
+                parent.transform.GetChild(i).gameObject.SetActive(false);
+            }
+
+
+            setSetActive = false;
         }
 
 
