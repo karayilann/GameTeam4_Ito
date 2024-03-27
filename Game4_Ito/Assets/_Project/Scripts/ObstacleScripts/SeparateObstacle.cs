@@ -4,41 +4,41 @@ using UnityEngine;
 
 
 /*
-    Bu Script Nasýl Çalýþýyor?
+    Bu Script Nasï¿½l ï¿½alï¿½ï¿½ï¿½yor?
 
-        1-Bu scriptin görevi, ayrýk tipte olan engellerin Y ekseni konumunu ve rengini ayarlamaktýr.
-        2-Diðer eksenlerdeki konumu ayarlamama nedenimiz, x ekseninin sabit olmasý, z deðerini ise daha sonra baþka bir scriptten verecek olmamýz.
-        3-Y ekseninde konumunu ayarlamaktaki amacýmýz, üstteki engelin üst yola, alttaki engelin de alt yola endeksli tam kenar kenara denk gelecekleri þekilde konumlandýrmaktýr.
-        4-Yollarýn y eksenindeki konumu ve scale deðeri bilinmekte, engelin de scale deðeri bilinmektedir. 
-        4.1 Bu yüzden kullanacaðýmýz formül: ---O1.POS.Y= (R1.POS.Y+(R1.SCL.Y/2))+(O1.SCL.Y/2)--- VE ---O2.POS.Y= (R2.POS.Y-(R2.SCL.Y/2))-(O2.SCL.Y/2)--- þeklindedir.
+        1-Bu scriptin gï¿½revi, ayrï¿½k tipte olan engellerin Y ekseni konumunu ve rengini ayarlamaktï¿½r.
+        2-Diï¿½er eksenlerdeki konumu ayarlamama nedenimiz, x ekseninin sabit olmasï¿½, z deï¿½erini ise daha sonra baï¿½ka bir scriptten verecek olmamï¿½z.
+        3-Y ekseninde konumunu ayarlamaktaki amacï¿½mï¿½z, ï¿½stteki engelin ï¿½st yola, alttaki engelin de alt yola endeksli tam kenar kenara denk gelecekleri ï¿½ekilde konumlandï¿½rmaktï¿½r.
+        4-Yollarï¿½n y eksenindeki konumu ve scale deï¿½eri bilinmekte, engelin de scale deï¿½eri bilinmektedir. 
+        4.1 Bu yï¿½zden kullanacaï¿½ï¿½mï¿½z formï¿½l: ---O1.POS.Y= (R1.POS.Y+(R1.SCL.Y/2))+(O1.SCL.Y/2)--- VE ---O2.POS.Y= (R2.POS.Y-(R2.SCL.Y/2))-(O2.SCL.Y/2)--- ï¿½eklindedir.
 
     */
 public class SeparateObstacle : MonoBehaviour
 {
     //Objects
     private GameObject obstacle1; //1.Child obje (Alttaki engel)
-    private GameObject obstacle2; //2.Child Obje (Üstteki engel)
+    private GameObject obstacle2; //2.Child Obje (ï¿½stteki engel)
     private GameObject obstacleEndPoint;
     private GameObject road1; //Alttaki yol
-    private GameObject road2; //Üstteki yol
+    private GameObject road2; //ï¿½stteki yol
 
     //Obstacle Z position Offset
-    [SerializeField] private float minZOffset; // obstacle2'nin obstacle1'den en az uzaklýðý
-    [SerializeField] private float maxZOffset; // obstacle2'nin obstacle1'den en fazla uzaklýðý
-    [SerializeField] private float ZPosOffset; // Rastgele olarak üretilecek offset deðerini bu deðiþkende tutacaðýz.
+    [SerializeField] private float minZOffset; // obstacle2'nin obstacle1'den en az uzaklï¿½ï¿½ï¿½
+    [SerializeField] private float maxZOffset; // obstacle2'nin obstacle1'den en fazla uzaklï¿½ï¿½ï¿½
+    [SerializeField] private float ZPosOffset; // Rastgele olarak ï¿½retilecek offset deï¿½erini bu deï¿½iï¿½kende tutacaï¿½ï¿½z.
     [SerializeField] private int backOrForward; //obstacle2, obstacle1'in ilerisinde mi gerisinde mi olacak?
 
     //Obstacle Y position
-    private float obstacle1YPosition; //obstacle1'in formül ile bulduðumuz Y eksenindeki deðerini bu deðiþkende tutacaðýz.
-    private float obstacle2YPosition; //obstacle2'nin formül ile bulduðumuz Y eksenindeki deðerini bu deðiþkende tutacaðýz.
-    private Vector3 obstacle1Position; //obstacle1'in pozisyon bilgisini bu deðiþkende tutacaðýz.
-    private Vector3 obstacle2Position; //obstacle2'nin pozisyon bilgisini bu deðiþkende tutacaðýz.
+    private float obstacle1YPosition; //obstacle1'in formï¿½l ile bulduï¿½umuz Y eksenindeki deï¿½erini bu deï¿½iï¿½kende tutacaï¿½ï¿½z.
+    private float obstacle2YPosition; //obstacle2'nin formï¿½l ile bulduï¿½umuz Y eksenindeki deï¿½erini bu deï¿½iï¿½kende tutacaï¿½ï¿½z.
+    private Vector3 obstacle1Position; //obstacle1'in pozisyon bilgisini bu deï¿½iï¿½kende tutacaï¿½ï¿½z.
+    private Vector3 obstacle2Position; //obstacle2'nin pozisyon bilgisini bu deï¿½iï¿½kende tutacaï¿½ï¿½z.
 
     //Obstacle color
-    private Color playerColor = Color.red; //Oyuncu rengi. Bu daha sonra deðiþecek.
-    private Color[] colorPalette = new Color[4]; //Renk seçeneklerimizi tuttuðumuz dizi.
-    private Color obstacle1Color = new Color(); //obstacle1'in rengini bu deðiþkende tutacaðýz.
-    private Color obstacle2Color = new Color(); //obstacle2'nin rengini bu deðiþkende tutacaðýz.
+    private Color playerColor = Color.red; //Oyuncu rengi. Bu daha sonra deï¿½iï¿½ecek.
+    private Color[] colorPalette = new Color[4]; //Renk seï¿½eneklerimizi tuttuï¿½umuz dizi.
+    private Color obstacle1Color = new Color(); //obstacle1'in rengini bu deï¿½iï¿½kende tutacaï¿½ï¿½z.
+    private Color obstacle2Color = new Color(); //obstacle2'nin rengini bu deï¿½iï¿½kende tutacaï¿½ï¿½z.
 
     private MaterialPropertyBlock obstacle1PropertyBlock;
     private MaterialPropertyBlock obstacle2PropertyBlock;
@@ -79,9 +79,9 @@ public class SeparateObstacle : MonoBehaviour
     }
 
 
-    void SetObstacle1Position() //Alttaki engelin (obstacle1) konumunun belirlendiði fonksiyon.
+    void SetObstacle1Position() //Alttaki engelin (obstacle1) konumunun belirlendiï¿½i fonksiyon.
     {
-        //Formül=> O1.POS.Y= (R1.POS.Y+(R1.SCL.Y/2))+(O1.SCL.Y/2)
+        //Formï¿½l=> O1.POS.Y= (R1.POS.Y+(R1.SCL.Y/2))+(O1.SCL.Y/2)
 
 
         obstacle1YPosition = (road1.transform.position.y + (road1.transform.localScale.y / 2)) + (obstacle1.transform.localScale.y / 2);
@@ -90,9 +90,9 @@ public class SeparateObstacle : MonoBehaviour
 
 
     }
-    void SetObstacle2Position() //Üstteki engelin (obstacle2) konumunun belirlendiði fonksiyon.
+    void SetObstacle2Position() //ï¿½stteki engelin (obstacle2) konumunun belirlendiï¿½i fonksiyon.
     {
-        //Formül=> O2.POS.Y= (R2.POS.Y-(R2.SCL.Y/2))-(O2.SCL.Y/2)
+        //Formï¿½l=> O2.POS.Y= (R2.POS.Y-(R2.SCL.Y/2))-(O2.SCL.Y/2)
 
         obstacle2YPosition = (road2.transform.position.y - (road2.transform.localScale.y / 2)) - (obstacle2.transform.localScale.y / 2);
 
@@ -105,7 +105,7 @@ public class SeparateObstacle : MonoBehaviour
             obstacle2Position = new Vector3(0, obstacle2YPosition, obstacle1.transform.position.z - ZPosOffset);
             obstacleEndPoint.transform.position = new Vector3(obstacleEndPoint.transform.position.x, obstacleEndPoint.transform.position.y, obstacle1.transform.position.z);
         }
-        else //Öndeyse
+        else //ï¿½ndeyse
         {
             obstacle2Position = new Vector3(0, obstacle2YPosition, obstacle1.transform.position.z + ZPosOffset);
             obstacleEndPoint.transform.position = new Vector3(obstacleEndPoint.transform.position.x, obstacleEndPoint.transform.position.y, obstacle2Position.z);
@@ -114,7 +114,7 @@ public class SeparateObstacle : MonoBehaviour
         obstacle2.transform.position = obstacle2Position;
     }
 
-    void SetObstacle1Color() //obstacle1'in rengini belirlediðimiz fonksiyon. 
+    void SetObstacle1Color() //obstacle1'in rengini belirlediï¿½imiz fonksiyon. 
     {
         int randomIndex = Random.Range(0, colorPalette.Length);
 
@@ -134,7 +134,7 @@ public class SeparateObstacle : MonoBehaviour
 
     }
 
-    void SetObstacle2Color() //obstacle2'nin rengini belirlediðimiz fonksiyon. 
+    void SetObstacle2Color() //obstacle2'nin rengini belirlediï¿½imiz fonksiyon. 
     {
         int randomIndex = Random.Range(0, colorPalette.Length);
 

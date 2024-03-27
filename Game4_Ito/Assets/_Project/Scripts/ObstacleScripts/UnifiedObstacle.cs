@@ -5,28 +5,28 @@ using UnityEngine;
 public class UnifiedObstacle : MonoBehaviour
 {
     private GameObject obstacle1; //Alttaki engel
-    private GameObject obstacle2; //Üstteki engel
-    private GameObject activator; //Aktivator (Engellerin ortasýndaki nesne)
+    private GameObject obstacle2; //ï¿½stteki engel
+    private GameObject activator; //Aktivator (Engellerin ortasï¿½ndaki nesne)
 
     private GameObject road1; //Alttaki yol
-    private GameObject road2; //Üstteki yol
+    private GameObject road2; //ï¿½stteki yol
 
     [SerializeField]
-    private float obstacleScaleXZ; //Engellerin X ve Z eksenindeki scale deðerlerini bu deðiþkende tutacaðýz.
+    private float obstacleScaleXZ; //Engellerin X ve Z eksenindeki scale deï¿½erlerini bu deï¿½iï¿½kende tutacaï¿½ï¿½z.
 
     [SerializeField]
-    private float activatorScale; //Activatorun scale deðerini bu deðiþkende tutacaðýz.
+    private float activatorScale; //Activatorun scale deï¿½erini bu deï¿½iï¿½kende tutacaï¿½ï¿½z.
 
     // ------------------------------------------------------------------
 
-    private int randomObstacleIndex; //Oyuncu rengi ile ayný olacak olan engelin altta mý üstte mi olacaðýný bu deðiþkeni kontrol ederek belirleyeceðiz.
+    private int randomObstacleIndex; //Oyuncu rengi ile aynï¿½ olacak olan engelin altta mï¿½ ï¿½stte mi olacaï¿½ï¿½nï¿½ bu deï¿½iï¿½keni kontrol ederek belirleyeceï¿½iz.
 
-    private Color playerColor = Color.red; //Oyuncunun rengini bu deðiþkende tutuyoruz. Daha sonra deðiþecek.
+    private Color playerColor = Color.red; //Oyuncunun rengini bu deï¿½iï¿½kende tutuyoruz. Daha sonra deï¿½iï¿½ecek.
 
-    private Color[] colorPalette = new[] { Color.yellow, Color.red, Color.blue, Color.green }; //Renk paletini, yani olabilecek renk seçeneklerini bu dizide tutacaðýz.
+    private Color[] colorPalette = new[] { Color.yellow, Color.red, Color.blue, Color.green }; //Renk paletini, yani olabilecek renk seï¿½eneklerini bu dizide tutacaï¿½ï¿½z.
 
-    private Color obstacle1Color; //Alttaki engelin rengini bu deðiþkende tutacaðýz.
-    private Color obstacle2Color; //Üstteki engelin rengini bu deðiþkende tutacaðýz.
+    private Color obstacle1Color; //Alttaki engelin rengini bu deï¿½iï¿½kende tutacaï¿½ï¿½z.
+    private Color obstacle2Color; //ï¿½stteki engelin rengini bu deï¿½iï¿½kende tutacaï¿½ï¿½z.
 
 
     private Renderer obstacle1Renderer;
@@ -68,14 +68,14 @@ public class UnifiedObstacle : MonoBehaviour
    
 
 
-    private void SetActivatorTransform() //Activator'un pozisyonunu ve scale deðerini bu fonksiyonla ayarlýyoruz.
+    private void SetActivatorTransform() //Activator'un pozisyonunu ve scale deï¿½erini bu fonksiyonla ayarlï¿½yoruz.
     {
         activator.transform.localScale = new Vector3(activatorScale, activatorScale, activatorScale);
         activator.transform.position = this.gameObject.transform.position;
     }
 
 
-    private void SetObstacle1Transform() //Alttaki engelin pozisyonunu ve scale deðerini bu fonksiyonla ayarlýyoruz.
+    private void SetObstacle1Transform() //Alttaki engelin pozisyonunu ve scale deï¿½erini bu fonksiyonla ayarlï¿½yoruz.
     {
 
         /*       OBS1
@@ -99,7 +99,7 @@ public class UnifiedObstacle : MonoBehaviour
     }
 
 
-    private void SetObstacle2Transform() //Üstteki engelin pozisyonunu ve scale deðerini bu fonksiyonla ayarlýyoruz.
+    private void SetObstacle2Transform() //ï¿½stteki engelin pozisyonunu ve scale deï¿½erini bu fonksiyonla ayarlï¿½yoruz.
     {
 
         /*      OBS 2
@@ -123,7 +123,7 @@ public class UnifiedObstacle : MonoBehaviour
     }
 
 
-    private void SetRandomDifferentObstacle() //Oyuncu rengiyle ayný olacak olan engelin alttaki mi üstteki mi olacaðýný kontrol ettiðimiz deðiþkenin deðerini bu fonksiyonla oluþturuyoruz.
+    private void SetRandomDifferentObstacle() //Oyuncu rengiyle aynï¿½ olacak olan engelin alttaki mi ï¿½stteki mi olacaï¿½ï¿½nï¿½ kontrol ettiï¿½imiz deï¿½iï¿½kenin deï¿½erini bu fonksiyonla oluï¿½turuyoruz.
     {
         randomObstacleIndex = Random.Range(0, 2);   //0 > obstacle1   ------   1 > obstacle2
 
@@ -154,7 +154,7 @@ public class UnifiedObstacle : MonoBehaviour
         //obstacle1Renderer.SetPropertyBlock(obstacle1PropertyBlock);
     }
 
-    private void SetObstacle2Color() //Üstteki engelin rengini bu fonksiyonla belirliyoruz.
+    private void SetObstacle2Color() //ï¿½stteki engelin rengini bu fonksiyonla belirliyoruz.
     {
         if (randomObstacleIndex == 1)
         {
