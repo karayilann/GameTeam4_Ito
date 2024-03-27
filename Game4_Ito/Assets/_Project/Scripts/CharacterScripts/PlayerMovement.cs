@@ -1,51 +1,79 @@
+using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _Project.Scripts.CharacterScripts
 {
     public class PlayerMovement : MonoBehaviour
     {
         public float MoveSpeed;
-        private Vector3 firstPosition;
-        private Vector3 lastPosition; // Yapılan kaydırma miktarı
+        public float CharacterSwipeAmount; // 
+        public float ScreenDragVaue;  // This variable created for set the slide value. Must use with Screen.Height
         
-        
+        private Vector3 _firstPosition;
+        private Vector3 _lastPosition; // Yapılan kaydırma miktarı
+
+        private Touch _swipeTouch;
+
         void Update()
         {
             PlayerRun();
-            PlayerSwipe();
-        }
-        
-        public void PlayerRun()
-        {
-            Vector3 translation = new Vector3(MoveSpeed * Time.deltaTime,0,0);
-            transform.Translate(translation);
+            PlayerSwipeController();
         }
 
-        public void PlayerSwipe()
+        private void PlayerRun()
+        {
+            Vector3 _runRight = new Vector3(MoveSpeed * Time.deltaTime, 0, 0);
+            transform.Translate(_runRight);
+        }
+
+        private void PlayerSwipeController()
         {
             if (Input.touchCount > 0)
             {
-                Touch touch = Input.GetTouch(0);
+                _swipeTouch = Input.GetTouch(0);
 
-                if (touch.phase == TouchPhase.Began) // Dokunma evresi hangi aşamada
+                switch (_swipeTouch.phase)
                 {
-                    firstPosition = transform.position;
-                    lastPosition = transform.position;
-                    Debug.Log("Başladı " +firstPosition);
-                    //
-                }
+                    case TouchPhase.Began:
+                        _firstPosition = _swipeTouch.position;
+                        _lastPosition = _swipeTouch.position;
+                        break;
+                    
+                    case TouchPhase.Moved:
+                        _lastPosition = _swipeTouch.position;
+                        break;
+                    
+                    case TouchPhase.Ended:
+                    {
+                        if (Mathf.Abs(_lastPosition.y - _firstPosition.y) > ScreenDragVaue)
+                        {
+                            if (_lastPosition.y > _firstPosition.y)
+                            {
+                                //Yukarı kaydırma yazılacak
+                                Debug.Log("Up Swipe");
+                                PlayerSwipe();
+                            }
+                            else
+                            {
+                                //Aşağı kaydırma yazılacak
+                                Debug.Log("Down Swipe");
+                                PlayerSwipe();
+                            }
+                        }
 
-                if (touch.phase == TouchPhase.Ended)
-                {
-                    lastPosition = transform.position;
-                    Debug.Log("Bitti " + lastPosition);
+                        break;
+                    }
                 }
-                
             }
-            
-            // aradaki farkın mutlak değeri alınarak yapılan yöndeki değere atanacak
-            
         }
+
+        private void PlayerSwipe()
+        {
+            var _characterMoveDirection = new Vector3(0,CharacterSwipeAmount * Time.deltaTime,0);
+            transform.Translate(_characterMoveDirection);
+        }
+        
         
     }
 }
