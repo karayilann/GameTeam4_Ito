@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Road1
+  - Road2
+  - slider
   layers:
   - Default
   - TransparentFX
