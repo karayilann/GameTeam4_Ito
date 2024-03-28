@@ -27,7 +27,7 @@ public class PlayerTest : MonoBehaviour
         {
             if (this.GetComponent<Renderer>().material.color == a.GetObstacleColor())
             {
-                Debug.Log("Renkler Ayný");
+                Debug.Log("Renkler AynÄ±");
                 
                 
                 
@@ -35,7 +35,7 @@ public class PlayerTest : MonoBehaviour
             }
             else
             {
-                Debug.Log("Renkler Farklý");
+                Debug.Log("Renkler FarklÄ±");
             }
 
             a = null;
